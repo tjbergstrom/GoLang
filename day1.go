@@ -165,6 +165,38 @@ var LastNames = map[string]string {
 }
 
 
+// OOP inheritence, will have the variables name age 
+// but doesnt inherit member functions like grow older
+type Fireperson Person {
+	P Person // doesnt inherit structs
+	Person // inherits member function
+	FirstName string // this is allowed
+	Age int64 //this is allowd
+}
+
+funct (fp FirePerson) Job() string {
+	return "youre on fire"
+	PersonNumFires int
+	isLit bool
+	
+}
+
+func (fp *FirePerson) ClockInTime(t time.Time) error {
+
+}
+
+func (fp *FirePerso) DoWork error {
+fp.
+}
+
+
+type Worker interface {
+	DoWork() error
+	Job() string
+	ClockOut(t time.Time) error
+	ClockIn(t time.Time) error
+
+}
 
 //structs
 type MyStruct struct {} // takes up no space
@@ -174,7 +206,7 @@ type Person struct {
 	LastName 	string
 	Age 		int
 	Pets 		[]Pet
-	Mom			&mom
+	Mom			*Person
 }
 
 
@@ -184,22 +216,74 @@ type Pet struct {
 	Hairless bool
 }
 
+//member function, declare outside of main block
+func (p Person) String() string { // extra bit before the function identifier is how you tie it to the person type
+	return fmt.Sprintf("Person{Name: %v %v, Age: %v, Mom's Name: %v}",
+	p.firstName, p.LastName, p.Age, p.Mom.FirstName, [.Mom.LastName])
+}
+
+func (p Person) GrowOlder(years int) error {
+	p.Age += years // this is a COPY passed by copy so its only changing the local copy // like p->Age
+					// needs to accept pointer to person to change original
+					// called a popinter receiver 
+					func (p *Person) GrowOlder(years int) error {
+	if p.Age > 99 { // like p->Age
+		return fmt.Errorf("u r ded")
+	}
+	return nil
+}
+
 func main(){
+
+	var firePerson = FirePerson{Person: Person{FirstName: "Bob"}}
+	var wk Worker = &firePerson
+	print(
+		if err := wk.Clockin(time.Now()); err != nil {
+			log.Fatal(err)
+		}
+		if err := wk.DoWork(); err != nil {
+			log.Fatal(err)
+		}
+		if err := wk.ClockOut(time.Now().Add(time.Hour)); err != nill {
+			log.Fatal(err)
+		}
+		firePerson := wk.(*FirePerson)
+		fmt.Println(firePerson)
+	)
+
 
 	mom := Person {
 		FirstName: "Liz",
 		LastName: "fish",
 	}
+	mom.FirstName // automatically dereferences pointer (wouldnt work in c++)
+	// mom->firstName would be c equivalent
+
 
 	me := Person{} // expression, liter, uninitialized
 	me := Person{
 		FirstName: "Adam", 
 		LastName: "LEvy",
+		Mo:	mom,
 	}
 	me.Age = 26
 	dog := Pet {Name: "Sport"}
 	me.Pets = append(me.Pets, dog)
 	print(me)
+
+	str := me.String()
+	fmt.print(str)
+
+	var err errorfor err == nil { // equiv to while true / while not dead
+		fmt.Println(me)
+		err = me.GrowOlder(1)
+	}
+
+
+	fireMan := FirePerson{Person: me}
+	fireMan.FirstName // get empty string because it prefers the string in the firePerson struct
+	fireman.Person.FirstName 
+
 
 	for i := range stuff {
 		thing := &stuff[i]
@@ -210,3 +294,57 @@ func main(){
 
 
 
+
+
+
+
+package main
+
+import {
+	"fmt"
+	"log"
+	"time"
+}
+
+
+
+func main() {
+	var work chan int // make the channel before you use it
+	work = make(chan int)
+	jobs := make(chan int) // same as above two lines
+	jobs := make(chan int, 5) // makes 5 jobs
+	for i := 0;  i<4; i++ {
+		go doWork(jobs) // pass in the channel so worker can read from it
+		// this creates workers
+	}
+	for i := 0;  i<4; i++ {
+		jobs <- i // write to the channel - every time it hits this, it blocks until worker does the line in doWork
+		// this is the jobs the workers do
+		// writing to the channgel is blocking until has been read
+	}
+	close(jobs)
+
+	time.Sleep(3 * time.Second)
+}
+
+// job does the work
+func doWork(job chan int) { //receives channel arg
+func doWork(w int, jobs chan int) {
+	n := <-job //reads from channel and prints result
+	fmt.Println("n") // doesnt print in order becasue its waiting for any of the workers to read and do this
+	//second way of doin it
+	for n := range jobs {
+		print("%v says %v", w, n)
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+Go Imports
