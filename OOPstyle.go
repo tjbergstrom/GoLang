@@ -1,3 +1,6 @@
+// an example of how to write object oriented code in Go
+
+
 package main
 
 import (
@@ -22,6 +25,7 @@ type FirePerson struct {
 func (fp FirePerson) Job() string {
 	return "fire person"
 }
+
 func (fp *FirePerson) ClockIn(t time.Time) error {
 	if !fp.clockInTime.IsZero() {
 		return fmt.Errorf("already working")
@@ -29,6 +33,7 @@ func (fp *FirePerson) ClockIn(t time.Time) error {
 	fp.clockInTime = t
 	return nil
 }
+
 func (fp *FirePerson) ClockOut(t time.Time) error {
 	if fp.clockInTime.IsZero() {
 		return fmt.Errorf("not clocked in")
@@ -37,6 +42,7 @@ func (fp *FirePerson) ClockOut(t time.Time) error {
 	fp.clockInTime = time.Time{}
 	return nil
 }
+
 func (fp *FirePerson) DoWork() error {
 	fp.NumFires++
 	fp.IsLit = false
@@ -52,9 +58,7 @@ type Worker interface {
 
 func main() {
 	var wk Worker = &FirePerson{Person: Person{FirstName: "bob"}}
-
 	fmt.Printf("I'm a %v and I'm OK\n", wk.Job())
-
 	if err := wk.ClockIn(time.Now()); err != nil {
 		log.Fatal(err)
 	}
@@ -64,7 +68,6 @@ func main() {
 	if err := wk.ClockOut(time.Now().Add(time.Hour)); err != nil {
 		log.Fatal(err)
 	}
-
 	firePerson := wk.(*FirePerson)
 	fmt.Println(firePerson)
 }
@@ -83,3 +86,6 @@ func (p *Person) GrowOlder(years int) error {
 	}
 	return nil
 }
+
+
+
