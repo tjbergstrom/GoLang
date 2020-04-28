@@ -1,4 +1,5 @@
-// an example of how to write object oriented code in Go
+// Go is not typically object oriented
+// this is one example of how to it
 
 
 package main
