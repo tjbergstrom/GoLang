@@ -1,4 +1,4 @@
-// pass_hash.go
+// password_hashing.go
 // How to salt and hash a password
 //
 // go run password_hashing.go
