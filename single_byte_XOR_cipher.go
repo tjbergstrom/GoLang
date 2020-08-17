@@ -30,18 +30,19 @@ func main() {
 
 
 func test_check() {
+	fmt.Println("\nTesting single_byte_xor_cipher()...")
 	hex_bytes := []byte("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736")
-	result, _, err := single_byte_XOR_cipher(hex_bytes)
+	result, _, err := single_byte_xor_cipher(hex_bytes)
 	if err != nil {
 		fmt.Println("Error: %s", err)
 	}
-	fmt.Println("Decryption:", string(result))
+	fmt.Println("Decryption test:", string(result))
 }
 
 
 // Take an encoded message and decode it into a string
-func single_byte_XOR_cipher(coded_msg []byte) ([]byte, int, error) {
-	bytes, err := decodeHexBytes(coded_msg)
+func single_byte_xor_cipher(coded_msg []byte) ([]byte, int, error) {
+	bytes, err := decode_hex_bytes(coded_msg)
 	if err != nil {
 		return nil, 0,  err
 	}
@@ -85,7 +86,7 @@ func char_weight(ch byte) int {
 }
 
 
-func decodeHexBytes(hexBytes []byte) ([]byte, error) {
+func decode_hex_bytes(hexBytes []byte) ([]byte, error) {
 	ret := make([]byte, hex.DecodedLen(len(hexBytes)))
 	_, err := hex.Decode(ret, hexBytes)
 	if err != nil {

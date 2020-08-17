@@ -15,15 +15,6 @@ import (
 
 func main() {
 	test_check()
-	fmt.Println("Input hex to convert it ")
-    var input []byte
-    fmt.Scanln(&input)
-    result, err := hex_to_base64(input)
-	if err != nil {
-		fmt.Println("err: %s", err)
-	}
-	fmt.Println("\nHere is the result in base64: ")
-	fmt.Println(string(result))
 }
 
 
