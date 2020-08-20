@@ -7,26 +7,22 @@
 
 package main
 import (
-	"os"
-	"io"
-	"fmt"
-	"bufio"
-	"io/ioutil"
-	"crypto/rand"
 	"crypto/aes"
-	"crypto/md5"
 	"crypto/cipher"
+	"crypto/md5"
+	"crypto/rand"
 	"encoding/hex"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"os"
 )
 
 
 func main() {
 	fmt.Println("Enter a string to encrypt it ")
-	in := bufio.NewReader(os.Stdin)
-	input, err := in.ReadString('\n')
-	if err != nil {
-		panic(err.Error())
-	}
+    var input string
+    fmt.Scanln(&input)
 	cipher_text := encrypt([]byte(input), "pass_phrase")
 	fmt.Printf("Encrypted: %x\n", cipher_text)
 	plain_text := decrypt(cipher_text, "pass_phrase")

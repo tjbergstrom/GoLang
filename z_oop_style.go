@@ -1,5 +1,5 @@
 // Go is not typically object oriented
-// this is one example of how to it
+// this is one example of how to it oop style
 
 
 package main
@@ -10,11 +10,13 @@ import (
 	"time"
 )
 
+
 type Person struct {
 	FirstName string
 	LastName  string
 	Age       int
 }
+
 
 type FirePerson struct {
 	Person
@@ -23,9 +25,11 @@ type FirePerson struct {
 	clockInTime time.Time
 }
 
+
 func (fp FirePerson) Job() string {
 	return "fire person"
 }
+
 
 func (fp *FirePerson) ClockIn(t time.Time) error {
 	if !fp.clockInTime.IsZero() {
@@ -34,6 +38,7 @@ func (fp *FirePerson) ClockIn(t time.Time) error {
 	fp.clockInTime = t
 	return nil
 }
+
 
 func (fp *FirePerson) ClockOut(t time.Time) error {
 	if fp.clockInTime.IsZero() {
@@ -44,11 +49,13 @@ func (fp *FirePerson) ClockOut(t time.Time) error {
 	return nil
 }
 
+
 func (fp *FirePerson) DoWork() error {
 	fp.NumFires++
 	fp.IsLit = false
 	return nil
 }
+
 
 type Worker interface {
 	Job() string
@@ -56,6 +63,7 @@ type Worker interface {
 	DoWork() error
 	ClockOut(t time.Time) error
 }
+
 
 func main() {
 	var wk Worker = &FirePerson{Person: Person{FirstName: "bob"}}
@@ -73,12 +81,14 @@ func main() {
 	fmt.Println(firePerson)
 }
 
+
 func (p Person) String() string {
 	return fmt.Sprintf(
 		"Person{Name: %v %v, Age: %v}",
 		p.FirstName, p.LastName, p.Age)
 
 }
+
 
 func (p *Person) GrowOlder(years int) error {
 	p.Age += years
@@ -90,3 +100,4 @@ func (p *Person) GrowOlder(years int) error {
 
 
 
+//
