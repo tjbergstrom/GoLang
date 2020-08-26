@@ -1,6 +1,7 @@
 // compute_hash.go
 // Some cryptographic hash functions
 
+
 package main
 
 import (
@@ -22,3 +23,7 @@ func main() {
     fmt.Printf("The sha256 hash is %x\n", hash_sha256)
     fmt.Printf("The md5 hash is %x\n", hash_md5)
 }
+
+
+
+//
